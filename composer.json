@@ -2,7 +2,6 @@
     "name": "veneridze/laravel-notifications-control",
     "description": "Give the user the opportunity to choose their own ways to deliver notifications",
     "license": "MIT",
-    "version": "1.0.3",
     "autoload": {
         "psr-4": {
             "Veneridze\\NotificationsControl\\": "src/"
