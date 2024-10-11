@@ -1,0 +1,44 @@
+{
+    "name": "veneridze/laravel-notifications-control",
+    "description": "Set Custom type to Model",
+    "license": "MIT",
+    "version": "1.0.3",
+    "autoload": {
+        "psr-4": {
+            "Veneridze\\NotificationsControl\\": "src/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Veneridze\\NotificationsControl\\NotificationsControlProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Veneridze",
+            "email": "viacheslav.kopaev@yandex.ru",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=8.2",
+        "laravel/framework": "^11.0",
+        "spatie/laravel-package-tools": "^1.16"
+    },
+    "scripts": {
+        "analyse": "vendor/bin/phpstan analyse",
+        "baseline": "vendor/bin/phpstan analyse --generate-baseline",
+        "test": "vendor/bin/pest"
+    }
+}
