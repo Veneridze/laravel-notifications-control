@@ -4,7 +4,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\App;
 use Veneridze\ModelTypes\Exceptions\WrongWay;
 use Veneridze\NotificationsControl\NotificationsControl;
-class HasNotificationPreferences {
+trait HasNotificationPreferences {
     /**
      * Summary of canNotify
      * @param Notification $notification
