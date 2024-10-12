@@ -2,6 +2,7 @@
 namespace Veneridze\NotificationsControl;
 
 
+use Illuminate\Contracts\Foundation\Application;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -13,6 +14,7 @@ class NotificationsControlProvider extends PackageServiceProvider
         $package
             ->name('laravel-notifications-control')
             ->hasConfigFile()
+            ->hasMigration('add_user_notification_preferences')
             ->publishesServiceProvider('NotificationsControlProvider')
             ->hasInstallCommand(function(InstallCommand $command) {
                 $command
@@ -31,13 +33,6 @@ class NotificationsControlProvider extends PackageServiceProvider
 
     public function packageRegistered(): void
     {
-        //$this->app->bind(WidthCalculator::class, config('media-library.responsive_images.width_calculator'));
-        //$this->app->bind(TinyPlaceholderGenerator::class, config('media-library.responsive_images.tiny_placeholder_generator'));
-//
-        //$this->app->scoped(MediaRepository::class, function () {
-        //    $mediaClass = config('media-library.media_model');
-//
-        //    return new MediaRepository(new $mediaClass);
-        //});
+        $this->app->singleton(NotificationsControl::class, fn(Application $app) => new NotificationsControl(config('notifications-control.ways')));
     }
 }
