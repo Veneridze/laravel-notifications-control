@@ -1,8 +1,9 @@
 <?php
 namespace Veneridze\NotificationsControl;
+use Illuminate\Support\Facades\Notification;
 class NotificationsControl {
 
-    public function __construct(private array $ways) {}
+    public function __construct(readonly array $ways) {}
     /**
      * Summary of getNotifyPreferences
      * @param Notification $notification
