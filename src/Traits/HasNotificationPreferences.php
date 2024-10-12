@@ -6,12 +6,9 @@ use Veneridze\ModelTypes\Exceptions\WrongWay;
 use Veneridze\NotificationsControl\NotificationsControl;
 trait HasNotificationPreferences {
     /**
-     * Summary of canNotify
-     * @param Notification $notification
-     * @param string $way
-     * @return bool
+     * Summary of getUserNotifications
+     * @return array<string>
      */
-
     private function getUserNotifications(): array {
         if(is_null($this->notificationPreferences) || is_string($this->notificationPreferences)) {
             return [];
@@ -20,6 +17,16 @@ trait HasNotificationPreferences {
         }
     }
 
+    public function isPreferencesSet(Notification $notification): bool {
+        return array_key_exists($notification::class, $this->getUserNotifications());
+    }
+    /**
+     * Summary of canNotify
+     * @param Notification $notification
+     * @param string $way
+     * @throws \Veneridze\ModelTypes\Exceptions\WrongWay
+     * @return bool
+     */
     public function canNotify(Notification $notification, string $way = null): bool {
         if(!App::make(NotificationsControl::class)->wayExist($way)) {
             throw new WrongWay("Канал уведомлений {$way} не существует");
@@ -50,7 +57,11 @@ trait HasNotificationPreferences {
             ]
         ]);
     }
-
+    /**
+     * Summary of getNotifyPreferences
+     * @param \Illuminate\Notifications\Notification $notification
+     * @return array
+     */
     public function getNotifyPreferences(Notification $notification): array {
         $notifications = $this->getUserNotifications();
         return array_key_exists($notification::class, $notifications) ?  $notifications[$notification::class] : [];
